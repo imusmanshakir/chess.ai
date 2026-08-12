@@ -32,3 +32,12 @@ class Board:
 
         for file in "abcdefgh":
             self.squares[f"{file}7"] = Piece(Color.BLACK, PieceType.PAWN)
+
+    def get_piece(self, square):
+        return self.squares.get(square)
+
+    def set_piece(self, square, piece):
+        self.squares[square] = piece
+
+    def remove_piece(self, square):
+        return self.squares.pop(square, None) # The expression pop(square, None) is used with a Python dictionary. It removes the key square from the dictionary and returns its value. If the key does not exist, it safely returns None instead of raising a KeyError.
