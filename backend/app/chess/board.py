@@ -41,3 +41,9 @@ class Board:
 
     def remove_piece(self, square):
         return self.squares.pop(square, None) # The expression pop(square, None) is used with a Python dictionary. It removes the key square from the dictionary and returns its value. If the key does not exist, it safely returns None instead of raising a KeyError.
+   
+    def is_valid_square(self, square):
+     if len(square) != 2: # len("e4")--> 2, len("abc")-->3
+      return False
+     file, rank = square # This is called unpacking.
+     return file in "abcdefgh" and rank in "12345678"
