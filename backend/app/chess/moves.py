@@ -20,14 +20,18 @@ def get_pawn_moves(board, square):
         direction = -1
         starting_rank = 7
 
-    one_step = f"{file}{rank + direction}"
+    one_step = f"{file}{rank + direction}"  # Calculate the one-square move
 
-    if board.is_valid_square(one_step) and board.get_piece(one_step) is None:
+    if (
+        board.is_valid_square(one_step) and board.get_piece(one_step) is None
+    ):  # This checks whether the destination is actually on the chess board.Second condition checks whether the destination square is empty.
         moves.append(one_step)
 
-        two_step = f"{file}{rank + (2 * direction)}"
+        two_step = f"{file}{rank + (2 * direction)}"  # Calculate the two-step move
 
-        if rank == starting_rank and board.get_piece(two_step) is None:
+        if (
+            rank == starting_rank and board.get_piece(two_step) is None
+        ):  # board.get_piece(two_step) --> checks whether the final destination is empty.
             moves.append(two_step)
 
     return moves
