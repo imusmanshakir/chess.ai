@@ -10,6 +10,12 @@ def get_pawn_moves(board, square):
 
     file = square[0]
     rank = int(square[1])
+    # square = "e2"----->e → file 2 → rank (Python uses indexing starting at zero:)
+    # "e2"
+    # index:
+    #   0  1
+    #   ↓  ↓
+    #   e  2
 
     moves = []
 
@@ -51,5 +57,39 @@ def get_pawn_moves(board, square):
 
         if target_piece is not None and target_piece.color != piece.color:
             moves.append(capture_square)
+
+    return moves
+
+
+def get_rook_moves(board, square):
+    piece = board.get_piece(square)
+
+    if piece is None or piece.type != PieceType.ROOK:
+        return []
+
+    file_index = "abcdefgh".index(square[0])
+    rank = int(square[1])
+    moves = []
+
+    # A rook can travel along files and ranks until a piece blocks its path.
+    directions = ((1, 0), (-1, 0), (0, 1), (0, -1))
+
+    for file_step, rank_step in directions:
+        current_file_index = file_index + file_step
+        current_rank = rank + rank_step
+
+        while 0 <= current_file_index < 8 and 1 <= current_rank <= 8:
+            destination = f"{'abcdefgh'[current_file_index]}{current_rank}"
+            target_piece = board.get_piece(destination)
+
+            if target_piece is None:
+                moves.append(destination)
+            else:
+                if target_piece.color != piece.color:
+                    moves.append(destination)
+                break
+
+            current_file_index += file_step
+            current_rank += rank_step
 
     return moves
