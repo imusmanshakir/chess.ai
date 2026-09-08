@@ -10,8 +10,20 @@ def test_rook_can_move_horizontally_and_vertically_on_an_open_board():
     moves = get_rook_moves(board, "d4")
 
     assert set(moves) == {
-        "a4", "b4", "c4", "e4", "f4", "g4", "h4",
-        "d1", "d2", "d3", "d5", "d6", "d7", "d8",
+        "a4",
+        "b4",
+        "c4",
+        "e4",
+        "f4",
+        "g4",
+        "h4",
+        "d1",
+        "d2",
+        "d3",
+        "d5",
+        "d6",
+        "d7",
+        "d8",
     }
 
 

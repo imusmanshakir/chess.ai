@@ -105,3 +105,23 @@ def test_pawn_cannot_capture_empty_square():
 
     assert "d3" not in moves
     assert "f3" not in moves    
+
+
+def test_white_pawn_can_capture_en_passant_when_target_is_available():
+    board = Board()
+    board.squares = {
+        "e5": Piece(Color.WHITE, PieceType.PAWN),
+        "d5": Piece(Color.BLACK, PieceType.PAWN),
+    }
+
+    assert "d6" in get_pawn_moves(board, "e5", en_passant_target="d6")
+
+
+def test_pawn_cannot_capture_en_passant_without_target():
+    board = Board()
+    board.squares = {
+        "e5": Piece(Color.WHITE, PieceType.PAWN),
+        "d5": Piece(Color.BLACK, PieceType.PAWN),
+    }
+
+    assert "d6" not in get_pawn_moves(board, "e5")
